@@ -4,7 +4,7 @@
 #
 Name     : R-gbm
 Version  : 2.1.4
-Release  : 12
+Release  : 13
 URL      : https://cran.r-project.org/src/contrib/gbm_2.1.4.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/gbm_2.1.4.tar.gz
 Summary  : Generalized Boosted Regression Models
