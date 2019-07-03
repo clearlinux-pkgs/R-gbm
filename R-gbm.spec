@@ -4,28 +4,29 @@
 #
 Name     : R-gbm
 Version  : 2.1.5
-Release  : 22
+Release  : 23
 URL      : https://cran.r-project.org/src/contrib/gbm_2.1.5.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/gbm_2.1.5.tar.gz
 Summary  : Generalized Boosted Regression Models
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+
 Requires: R-gbm-lib = %{version}-%{release}
+Requires: R-gridExtra
+Requires: R-gtable
+Requires: R-pdp
+Requires: R-viridis
 BuildRequires : R-gridExtra
+BuildRequires : R-gtable
 BuildRequires : R-pdp
 BuildRequires : R-viridis
 BuildRequires : buildreq-R
-BuildRequires : texlive
 
 %description
-gbm
-===
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/gbm)](https://cran.r-project.org/package=gbm)
-[![Build
-Status](https://travis-ci.org/gbm-developers/gbm.svg?branch=master)](https://travis-ci.org/gbm-developers/gbm)
-[![Downloads](http://cranlogs.r-pkg.org/badges/gbm)](http://cranlogs.r-pkg.org/badges/gbm)
-[![Total
-Downloads](http://cranlogs.r-pkg.org/badges/grand-total/gbm)](http://cranlogs.r-pkg.org/badges/grand-total/gbm)
+algorithm and Friedman's gradient boosting machine. Includes regression 
+  methods for least squares, absolute loss, t-distribution loss, quantile 
+  regression, logistic, multinomial logistic, Poisson, Cox proportional hazards 
+  partial likelihood, AdaBoost exponential loss, Huberized hinge loss, and 
+  Learning to Rank measures (LambdaMart). Originally developed by Greg Ridgeway.
 
 %package lib
 Summary: lib components for the R-gbm package.
@@ -42,13 +43,13 @@ lib components for the R-gbm package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1552897900
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562198299
 
 %install
-export SOURCE_DATE_EPOCH=1552897900
+export SOURCE_DATE_EPOCH=1562198299
 rm -rf %{buildroot}
-export LANG=C
+export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -77,12 +78,12 @@ R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} 
 cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc  gbm || :
+R CMD check --no-manual --no-examples --no-codoc gbm || :
 
 
 %files
